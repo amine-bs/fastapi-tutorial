@@ -3,7 +3,7 @@ pydantic==1.10.2
 python-multipart==0.0.5
 requests==2.28.1
 starlette==0.20.4
-torch==1.12.1+cpu
-torchvision==0.13.1+cpu
+torch==1.12.1
+torchvision==0.13.1
 urllib3==1.26.12
 uvicorn==0.18.3
