@@ -27,12 +27,16 @@ async def predict_api(file: UploadFile = File(...)):
     preds = predict(img, model, device)
     return preds
 
-@app.get("/model")
-def details():
-    model = "ResNet18"
-    accuracy = "99.25%"
-    training_dataset = "https://www.kaggle.com/datasets/carlosrunner/pizza-not-pizza"
-    return {"Model": model, 
-            "accuracy": accuracy,
-            "training dataset": training_dataset}
+@app.get("/model/{info}")
+def details(info:str, n:int=2):
+    accuracy = 95.423728
+    if info == 'architecture':
+        return {'architecture': 'ResNet18'}
+    elif info == 'dataset':
+        return {'dataset url': "https://www.kaggle.com/datasets/rhammell/ships-in-satellite-imagery"}
+    elif info == 'accuracy':
+        formatted_accuracy = int((10**n)*accuracy)/(10**n)
+        return {'accuracy': '{}%'.format(formatted_accuracy)}
+    else:    
+        return '{} is not available'.format(info)
 
