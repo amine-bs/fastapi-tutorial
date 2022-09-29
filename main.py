@@ -1,7 +1,7 @@
 from io import BytesIO
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
-from utils import load_device, load_model, predict, is_image_file
+from utils import load_device, import_model, predict, is_image_file
 from PIL import Image
 
  
@@ -12,7 +12,7 @@ def read_image(file):
     return img
 
 device = load_device()
-model = load_model(device=device)
+model = import_model(bucket="mbenxsalha", key="diffusion/state_dict.pickle", device=device)
 
 
 @app.get("/")
